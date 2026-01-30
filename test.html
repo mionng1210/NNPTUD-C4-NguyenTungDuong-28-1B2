@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Posts & Comments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .form-section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: inline-block;
+            width: 80px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"] {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="button"], input[type="submit"] {
+            padding: 8px 16px;
+            margin: 2px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[value="Lưu"], input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+        input[value="Xoá"] {
+            background-color: #f44336;
+            color: white;
+        }
+        input[value="Sửa"] {
+            background-color: #2196F3;
+            color: white;
+        }
+        input[value="Khôi phục"] {
+            background-color: #ff9800;
+            color: white;
+        }
+        input[value="Xoá Form"] {
+            background-color: #9e9e9e;
+            color: white;
+        }
+        .note {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- POSTS SECTION -->
+        <h2>📝 Quản lý Posts</h2>
+        
+        <div class="form-section">
+            <h3>Thêm/Sửa Post</h3>
+            <div class="form-group">
+                <label>ID:</label>
+                <input type="text" id="post_id_txt" placeholder="Để trống khi thêm mới" readonly/>
+                <span class="note">(ID tự động tăng khi thêm mới)</span>
+            </div>
+            <div class="form-group">
+                <label>Title:</label>
+                <input type="text" id="post_title_txt" placeholder="Nhập tiêu đề"/>
+            </div>
+            <div class="form-group">
+                <label>Views:</label>
+                <input type="text" id="post_view_txt" placeholder="Nhập số lượt xem"/>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Lưu" onclick="SavePost()"/>
+                <input type="button" value="Xoá Form" onclick="ClearPostForm()"/>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Views</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+
+        <!-- COMMENTS SECTION -->
+        <h2>💬 Quản lý Comments</h2>
+        
+        <div class="form-section">
+            <h3>Thêm/Sửa Comment</h3>
+            <div class="form-group">
+                <label>ID:</label>
+                <input type="text" id="comment_id_txt" placeholder="Để trống khi thêm mới" readonly/>
+                <span class="note">(ID tự động tăng khi thêm mới)</span>
+            </div>
+            <div class="form-group">
+                <label>Text:</label>
+                <input type="text" id="comment_text_txt" placeholder="Nhập nội dung comment"/>
+            </div>
+            <div class="form-group">
+                <label>Post ID:</label>
+                <input type="text" id="comment_postId_txt" placeholder="Nhập ID của post"/>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Lưu" onclick="SaveComment()"/>
+                <input type="button" value="Xoá Form" onclick="ClearCommentForm()"/>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Text</th>
+                    <th>Post ID</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="comment-table-body">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
